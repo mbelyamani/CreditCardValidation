@@ -25,8 +25,6 @@ public class LuhnValidation implements Validation{
 	
 	
 	public static Boolean Mod10Check(String creditCardNumber) {
-		System.out.println("Credit Card is :: " + creditCardNumber);
-		
 		// check whether input string is null or empty
 		if (creditCardNumber == null || creditCardNumber.isEmpty())
 			return false;
@@ -41,7 +39,6 @@ public class LuhnValidation implements Validation{
 		// 2.	If doubling of a number results in a two digits number, add up
 		//   the digits to get a single digit number. This will results in eight single digit numbers                    
 		// 3. Get the sum of the digits
-		
 		Optional<Integer> result = IntStream.range(0, ccWithoutSpace.length()).mapToObj(e -> {
 												if(e%2 == 0) {
 													int val = Character.getNumericValue(ccWithoutSpace.charAt(e)) * 2;
@@ -53,8 +50,6 @@ public class LuhnValidation implements Validation{
 												}
 											}).reduce((a,b) -> a+b);
 		
-		
-		System.out.println("Result :: " + result.get());
 		return result.isPresent() && result.get().intValue()%10==0;
 	}
 
