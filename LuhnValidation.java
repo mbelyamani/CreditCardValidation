@@ -13,10 +13,14 @@ public class LuhnValidation implements Validation{
 
     public static LuhnValidation getInstance() {
         if (luhnValidation == null) {
-            synchronized(LuhnValidation.class) {            
-                if (luhnValidation == null) {
-                	luhnValidation = new LuhnValidation();
-                }        
+            synchronized(LuhnValidation.class) { 
+            	try {
+	                if (luhnValidation == null) {
+	                	luhnValidation = new LuhnValidation();
+	                }    
+            	} catch(Exception ex){
+            		ex.fillInStackTrace().printStackTrace();
+            	}
             }
         }
 
